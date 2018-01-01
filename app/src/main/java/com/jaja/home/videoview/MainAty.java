@@ -38,7 +38,7 @@ public class MainAty extends AppCompatActivity {
                 videoView.setVideoURI(Uri.parse(netUrl));
                 break;
             case R.id.mediaPlayer:
-                Intent intent = new Intent(this, MediaPlayAct.class);
+                Intent intent = new Intent(this, MedAct.class);
                 startActivity(intent);
                 break;
         }

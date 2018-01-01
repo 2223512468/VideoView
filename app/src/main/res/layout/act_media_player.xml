@@ -1,39 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:scrollbars="vertical">
 
-    <SurfaceView
-        android:id="@+id/surfaceView"
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="300dp" />
-
-    <Button
-        android:id="@+id/player"
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="player"
-        android:text="播放" />
+        android:orientation="vertical">
 
-    <Button
-        android:id="@+id/sdPlayer"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="player"
-        android:text="SD播放" />
+        <SurfaceView
+            android:id="@+id/surfaceView"
+            android:layout_width="match_parent"
+            android:layout_height="300dp" />
 
-    <Button
-        android:id="@+id/netPlayer"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="player"
-        android:text="net播放" />
+        <Button
+            android:id="@+id/player"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="player"
+            android:text="播放" />
 
-    <SeekBar
-        android:id="@+id/seekbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        <Button
+            android:id="@+id/sdPlayer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="player"
+            android:text="SD播放" />
+
+        <Button
+            android:id="@+id/netPlayer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="player"
+            android:text="net播放" />
+
+        <SeekBar
+            android:id="@+id/seekbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
 
-</LinearLayout>
+        <Button
+            android:id="@+id/takePlayer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="player"
+            android:text="textureView解决滚动问题" />
+
+        <Button
+            android:id="@+id/listPlayer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="player"
+            android:text="list滚动播放" />
+    </LinearLayout>
+
+
+</ScrollView>

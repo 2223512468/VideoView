@@ -1,6 +1,7 @@
 package com.jaja.home.videoview;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
@@ -14,7 +15,7 @@ import java.io.IOException;
 /**
  * Created by tu on 2017/12/30.
  */
-public class MediaPlayAct extends Activity implements SurfaceHolder.Callback, SeekBar.OnSeekBarChangeListener {
+public class MedAct extends Activity implements SurfaceHolder.Callback, SeekBar.OnSeekBarChangeListener {
 
     private SurfaceView mSurfaceView;
     private MediaPlayer mediaPlayer;
@@ -30,8 +31,16 @@ public class MediaPlayAct extends Activity implements SurfaceHolder.Callback, Se
         seekBar = (SeekBar) findViewById(R.id.seekbar);
         surfaceHolder = mSurfaceView.getHolder();
         surfaceHolder.addCallback(this);
+        /**
+         * 加载raw文件下视频
+         */
         // mediaPlayer = MediaPlayer.create(this, R.raw.hl);
-   /*     mediaPlayer = new MediaPlayer();
+        ///////////////////////////////////////////
+
+        /**
+         * 加载sd卡内的视频
+         */
+     /*   mediaPlayer = new MediaPlayer();
         String sd = Environment.getExternalStorageDirectory().toString();
         File file = new File(sd, "/test.mp4");
         Toast.makeText(this, "exist" + file.exists(), Toast.LENGTH_SHORT).show();
@@ -42,6 +51,11 @@ public class MediaPlayAct extends Activity implements SurfaceHolder.Callback, Se
             e.printStackTrace();
         }*/
 
+        ///////////////////////////////////////////////////////////
+
+        /**
+         * 加载网络视频
+         */
         seekBar.setOnSeekBarChangeListener(this);
         mediaPlayer = new MediaPlayer();
         try {
@@ -56,10 +70,22 @@ public class MediaPlayAct extends Activity implements SurfaceHolder.Callback, Se
     public void player(View v) {
         switch (v.getId()) {
             case R.id.player:
+                mediaPlayer.start();
+                break;
             case R.id.sdPlayer:
+                mediaPlayer.start();
+                break;
             case R.id.netPlayer:
                 mediaPlayer.start();
                 new MyThread().start();
+                break;
+            case R.id.takePlayer:
+                Intent intent = new Intent(this, TextAct.class);
+                startActivity(intent);
+                break;
+            case R.id.listPlayer:
+                Intent intent1 = new Intent(this, ListAct.class);
+                startActivity(intent1);
                 break;
         }
     }
@@ -77,7 +103,7 @@ public class MediaPlayAct extends Activity implements SurfaceHolder.Callback, Se
     @Override
     public void surfaceDestroyed(SurfaceHolder holder) {
         if (mediaPlayer != null) {
-            mediaPlayer.reset();
+//            mediaPlayer.reset();
             mediaPlayer.release();
         }
         flag = false;
@@ -110,5 +136,15 @@ public class MediaPlayAct extends Activity implements SurfaceHolder.Callback, Se
                 seekBar.setProgress(mediaPlayer.getCurrentPosition());
             }
         }
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if (mediaPlayer != null) {
+            mediaPlayer.reset();
+            mediaPlayer.release();
+        }
+        flag = false;
     }
 }
